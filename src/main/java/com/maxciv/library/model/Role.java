@@ -1,6 +1,8 @@
 package com.maxciv.library.model;
 
-public enum Role {
+import org.springframework.security.core.GrantedAuthority;
+
+public enum Role implements GrantedAuthority {
 
     LIBRARIAN(0, "Librarian"),
     READER(1, "Reader"),
@@ -56,5 +58,10 @@ public enum Role {
                 return COMMON_USER;
         }
         return READER;
+    }
+
+    @Override
+    public String getAuthority() {
+        return name();
     }
 }
